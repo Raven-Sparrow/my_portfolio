@@ -1,4 +1,4 @@
-// --- 1. LIGHT/DARK THEME TOGGLE HANDLER ---
+// --- 1. LIGHT/DARK THEME TOGGLE HANDLER (Your Code) ---
 const themeIcon = document.getElementById('theme-icon');
 
 themeIcon.addEventListener('click', () => {
@@ -12,39 +12,46 @@ themeIcon.addEventListener('click', () => {
     }
 });
 
-// --- 2. MAGNETIC FLUID CUSTOM CURSOR HANDLER ---
-const cursorRing = document.querySelector('.custom-cursor');
-const cursorDot = document.querySelector('.custom-cursor-dot');
-const projectCards = document.querySelectorAll('.card');
+// --- 2. AMBIENT BACKGROUND PARALLAX PHYSICS ENGINE (Wibify Interaction) ---
+const heroSection = document.getElementById('interactive-hero');
+const layers = document.querySelectorAll('.parallax-layer');
 
-let mouseX = 0, mouseY = 0; 
-let ringX = 0, ringY = 0;   
-
-window.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
+if (heroSection) {
+    heroSection.addEventListener('mousemove', (e) => {
+        // Find center points of the monitor screen
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        
+        // Calculate the vector offset of the pointer position from the center
+        const moveX = e.clientX - centerX;
+        const moveY = e.clientY - centerY;
+        
+        // Apply individual speeds dynamically to the design elements
+        layers.forEach(layer => {
+            const speed = layer.getAttribute('data-speed');
+            const x = moveX * speed;
+            const y = moveY * speed;
+            
+            if (layer.classList.contains('abstract-cosmic-core')) {
+                layer.style.transform = `translate(${x}px, ${y}px)`;
+            } else if (layer.classList.contains('glass-panel-accent')) {
+                layer.style.transform = `rotate(-12deg) translate(${x - 30}px, ${y - 10}px)`;
+            } else if (layer.classList.contains('orbital-glowing-ring')) {
+                layer.style.transform = `rotateX(75deg) rotateY(-10deg) translate(${x}px, ${y}px)`;
+            }
+        });
+    });
     
-    cursorDot.style.left = `${mouseX}px`;
-    cursorDot.style.top = `${mouseY}px`;
-});
-
-function animateTrackingRing() {
-    ringX += (mouseX - ringX) * 0.15;
-    ringY += (mouseY - ringY) * 0.15;
-    
-    cursorRing.style.left = `${ringX}px`;
-    cursorRing.style.top = `${ringY}px`;
-    
-    requestAnimationFrame(animateTrackingRing);
+    // Smoothly spring components back to default coordinates when cursor leaves the hero area
+    heroSection.addEventListener('mouseleave', () => {
+        layers.forEach(layer => {
+            if (layer.classList.contains('abstract-cosmic-core')) {
+                layer.style.transform = `translate(0px, 0px)`;
+            } else if (layer.classList.contains('glass-panel-accent')) {
+                layer.style.transform = `rotate(-12deg) translate(-30px, -10px)`;
+            } else if (layer.classList.contains('orbital-glowing-ring')) {
+                layer.style.transform = `rotateX(75deg) rotateY(-10deg) translate(0px, 0px)`;
+            }
+        });
+    });
 }
-animateTrackingRing();
-
-// --- 3. PROJECT CARD EXPANSION EVENTS ---
-projectCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        cursorRing.classList.add('hovered');
-    });
-    card.addEventListener('mouseleave', () => {
-        cursorRing.classList.remove('hovered');
-    });
-});

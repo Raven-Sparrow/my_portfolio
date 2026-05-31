@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | Digital Design Studio</title>
+    <title>Your Name | Portfolio</title>
     <!-- Boxicons for modern tech icons -->
     <link href="https://unpkg.com" rel="stylesheet">
     <!-- Link to external CSS file -->
@@ -11,11 +11,7 @@
 </head>
 <body>
 
-    <!-- Premium Custom Animated Cursor Elements -->
-    <div class="custom-cursor"></div>
-    <div class="custom-cursor-dot"></div>
-
-    <!-- Wibify Header Navigation Framework -->
+    <!-- Wibify Floating Header Navigation Bar -->
     <nav class="studio-nav">
         <div class="logo">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
@@ -30,26 +26,23 @@
         </div>
     </nav>
 
-    <!-- Main Full-Screen Studio Section Base -->
-    <main class="hero-workspace">
+    <!-- Full-Screen Split Viewport Layout -->
+    <main class="hero-workspace" id="interactive-hero">
         <div class="hero-left">
             <div class="studio-tag">[01] DIGITAL DESIGN STUDIO</div>
-            
             <h1 class="hero-title">
                 We build <span class="highlight-text">digital products</span> for ambitious brands.
             </h1>
-            
             <p class="hero-subtitle">
                 Websites, branding, software and mobile apps — digital products for brands with ambition.
             </p>
             
-            <!-- Dual Action Button Section Block -->
             <div class="hero-cta-group">
                 <a href="mailto:your.email@example.com" class="btn-primary">Start a project →</a>
                 <a href="#projects" class="btn-secondary"><span class="square-dot"></span> Selected work</a>
             </div>
 
-            <!-- Horizontal Performance Tracking Metrics Bar -->
+            <!-- Performance Tracking Metrics Bar -->
             <div class="live-metrics-bar">
                 <div class="metric-item"><span>★ 5,0</span> GOOGLE · 21 REVIEWS</div>
                 <div class="metric-item"><span>▪ 7,5M+</span> USERS REACHED</div>
@@ -57,12 +50,12 @@
             </div>
         </div>
 
-        <!-- Wibify Floating Abstract Artwork Panel Replica -->
+        <!-- Floating Abstract Space Artwork Asset Panel -->
         <div class="hero-right-asset">
             <div class="glass-canvas-container">
-                <div class="glass-panel-accent"></div>
-                <div class="abstract-cosmic-core"></div>
-                <div class="orbital-glowing-ring"></div>
+                <div class="glass-panel-accent parallax-layer" data-speed="-0.03"></div>
+                <div class="abstract-cosmic-core parallax-layer" data-speed="0.05"></div>
+                <div class="orbital-glowing-ring parallax-layer" data-speed="0.02"></div>
             </div>
         </div>
     </main>
@@ -70,33 +63,45 @@
     <div class="container">
         <!-- Projects Showcase Section -->
         <section id="projects">
-            <h2>[02] SELECTED WORK / 2024 — 2026</h2>
+            <div class="section-header">
+                <h2> SELECTED WORK / 2024 — 2026</h2>
+                <p>What we've built.</p>
+            </div>
+            
             <div class="grid">
-                
                 <!-- Project 1 -->
                 <div class="card">
-                    <h3>E-Commerce Platform</h3>
-                    <div class="tags">
-                        <span>React</span>
-                        <span>Node.js</span>
-                        <span>MongoDB</span>
+                    <div class="card-left-meta">
+                        <span class="card-num">01</span>
+                        <div class="card-text-wrapper">
+                            <h3>E-Commerce Platform</h3>
+                            <p>A fully responsive digital storefront featuring secure user authentication, shopping cart functionality, and integrated Stripe payments.</p>
+                            <div class="tags">
+                                <span>React</span>
+                                <span>Node.js</span>
+                                <span>MongoDB</span>
+                            </div>
+                        </div>
                     </div>
-                    <p>A fully responsive digital storefront featuring secure user authentication, shopping cart functionality, and integrated Stripe payments.</p>
                     <a href="#" class="btn" target="_blank">View Code <i class='bx bx-right-arrow-alt'></i></a>
                 </div>
 
                 <!-- Project 2 -->
                 <div class="card">
-                    <h3>Task Analytics Dashboard</h3>
-                    <div class="tags">
-                        <span>Python</span>
-                        <span>Django</span>
-                        <span>Chart.js</span>
+                    <div class="card-left-meta">
+                        <span class="card-num">02</span>
+                        <div class="card-text-wrapper">
+                            <h3>Task Analytics Dashboard</h3>
+                            <p>An automated backend script that collects daily productivity metrics and visualizes user data trends via interactive graphs.</p>
+                            <div class="tags">
+                                <span>Python</span>
+                                <span>Django</span>
+                                <span>Chart.js</span>
+                            </div>
+                        </div>
                     </div>
-                    <p>An automated backend script that collects daily productivity metrics and visualizes user data trends via interactive graphs.</p>
                     <a href="#" class="btn" target="_blank">View Code <i class='bx bx-right-arrow-alt'></i></a>
                 </div>
-
             </div>
         </section>
 
