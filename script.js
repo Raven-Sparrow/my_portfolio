@@ -1,19 +1,16 @@
-// --- 1. SINGLE-PAGE SYSTEM SWITCH ENGINE ---
+// --- 1. SINGLE-PAGE SWITCH ENGINE ---
 function switchPage(pageId) {
-    // Hide all existing view containers
     const views = document.querySelectorAll('.page-view');
     views.forEach(view => view.classList.remove('active-view'));
-    
-    // Target the requested view block element and display it smoothly
+
     const targetView = document.getElementById(`view-${pageId}`);
     if (targetView) {
         targetView.classList.add('active-view');
-        // Scroll automatically back to top of screen on page load paths
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 }
 
-// --- 2. HANGING BULB INTEGRATED LIGHT ENGINES ---
+// --- 2. HANGING BULB THEME TOGGLE ---
 const bulbTrigger = document.getElementById('bulb-trigger');
 
 if (bulbTrigger) {
@@ -27,7 +24,7 @@ if (bulbTrigger) {
     });
 }
 
-// --- 3. AMBIENT WORKSPACE VECTOR PARALLAX MECHANICS ---
+// --- 3. PARALLAX HERO MOUSE MOVEMENT ---
 const heroSection = document.getElementById('interactive-hero');
 const layers = document.querySelectorAll('.parallax-layer');
 
@@ -35,15 +32,15 @@ if (heroSection) {
     heroSection.addEventListener('mousemove', (e) => {
         const centerX = window.innerWidth / 2;
         const centerY = window.innerHeight / 2;
-        
+
         const moveX = e.clientX - centerX;
         const moveY = e.clientY - centerY;
-        
+
         layers.forEach(layer => {
-            const speed = layer.getAttribute('data-speed');
+            const speed = parseFloat(layer.getAttribute('data-speed'));
             const x = moveX * speed;
             const y = moveY * speed;
-            
+
             if (layer.classList.contains('abstract-cosmic-core')) {
                 layer.style.transform = `translate(${x}px, ${y}px)`;
             } else if (layer.classList.contains('glass-panel-accent')) {
@@ -53,7 +50,7 @@ if (heroSection) {
             }
         });
     });
-    
+
     heroSection.addEventListener('mouseleave', () => {
         layers.forEach(layer => {
             if (layer.classList.contains('abstract-cosmic-core')) {
