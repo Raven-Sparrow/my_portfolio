@@ -1,32 +1,44 @@
-// --- 1. LIGHT/DARK THEME TOGGLE HANDLER (Your Code) ---
-const themeIcon = document.getElementById('theme-icon');
-
-themeIcon.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    if (currentTheme === 'light') {
-        document.documentElement.removeAttribute('data-theme');
-        themeIcon.textContent = '💡';
-    } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        themeIcon.textContent = '🔌';
+// --- 1. SINGLE-PAGE SYSTEM SWITCH ENGINE ---
+function switchPage(pageId) {
+    // Hide all existing view containers
+    const views = document.querySelectorAll('.page-view');
+    views.forEach(view => view.classList.remove('active-view'));
+    
+    // Target the requested view block element and display it smoothly
+    const targetView = document.getElementById(`view-${pageId}`);
+    if (targetView) {
+        targetView.classList.add('active-view');
+        // Scroll automatically back to top of screen on page load paths
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-});
+}
 
-// --- 2. AMBIENT BACKGROUND PARALLAX PHYSICS ENGINE (Wibify Interaction) ---
+// --- 2. HANGING BULB INTEGRATED LIGHT ENGINES ---
+const bulbTrigger = document.getElementById('bulb-trigger');
+
+if (bulbTrigger) {
+    bulbTrigger.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        if (currentTheme === 'light') {
+            document.documentElement.removeAttribute('data-theme');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    });
+}
+
+// --- 3. AMBIENT WORKSPACE VECTOR PARALLAX MECHANICS ---
 const heroSection = document.getElementById('interactive-hero');
 const layers = document.querySelectorAll('.parallax-layer');
 
 if (heroSection) {
     heroSection.addEventListener('mousemove', (e) => {
-        // Find center points of the monitor screen
         const centerX = window.innerWidth / 2;
         const centerY = window.innerHeight / 2;
         
-        // Calculate the vector offset of the pointer position from the center
         const moveX = e.clientX - centerX;
         const moveY = e.clientY - centerY;
         
-        // Apply individual speeds dynamically to the design elements
         layers.forEach(layer => {
             const speed = layer.getAttribute('data-speed');
             const x = moveX * speed;
@@ -42,7 +54,6 @@ if (heroSection) {
         });
     });
     
-    // Smoothly spring components back to default coordinates when cursor leaves the hero area
     heroSection.addEventListener('mouseleave', () => {
         layers.forEach(layer => {
             if (layer.classList.contains('abstract-cosmic-core')) {

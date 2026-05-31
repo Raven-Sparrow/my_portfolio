@@ -1,14 +1,13 @@
-/* 1. Base Dark Theme Variables (Preserved from your code) */
+/* 1. Base Variables Mapping Engine */
 :root {
     --bg-color: #050506;
     --card-bg: #0d0d11;
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
-    --accent: #38bdf8; /* Your original electric blue highlight color */
+    --accent: #38bdf8; /* Original electric cyan color */
     --border-line: rgba(255, 255, 255, 0.08);
 }
 
-/* 2. Light Theme Variables (Preserved from your code) */
 [data-theme="light"] {
     --bg-color: #f8fafc;
     --card-bg: #ffffff;
@@ -18,177 +17,106 @@
     --border-line: rgba(0, 0, 0, 0.08);
 }
 
-/* 3. Global Styles */
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-}
+/* 2. Reset and Structural Layout Rules */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+html { scroll-behavior: smooth; }
+body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; transition: background-color 0.3s ease, color 0.3s ease; overflow-x: hidden; }
 
-html {
-    scroll-behavior: smooth;
-}
+/* 3. Multi-Page Viewport States Matrix Switch selectors */
+.page-view { display: none; width: 100%; min-height: 85vh; opacity: 0; transition: opacity 0.4s ease-in-out; }
+.page-view.active-view { display: block; opacity: 1; }
+.view-padding { padding-top: 10rem; padding-bottom: 5rem; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
 
-body { 
-    background-color: var(--bg-color); 
-    color: var(--text-main); 
-    line-height: 1.6; 
-    transition: background-color 0.3s ease, color 0.3s ease;
-    overflow-x: hidden;
-}
-
-/* Wibify Header Navigation Layout */
-.studio-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 4rem;
-    border-bottom: 1px solid var(--border-line);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 100;
-    background-color: rgba(5, 5, 6, 0.7);
-    backdrop-filter: blur(20px);
-}
-
-[data-theme="light"] .studio-nav {
-    background-color: rgba(248, 248, 252, 0.7);
-}
-
-.logo svg { color: var(--text-main); }
+/* 4. Navigation Design Rules */
+.studio-nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; border-bottom: 1px solid var(--border-line); position: fixed; top: 0; width: 100%; z-index: 100; background-color: rgba(5, 5, 6, 0.7); backdrop-filter: blur(20px); }
+[data-theme="light"] .studio-nav { background-color: rgba(248, 248, 252, 0.7); }
+.logo svg { color: var(--text-main); cursor: pointer; }
+.nav-links { display: flex; gap: 2.5rem; }
+.nav-link-item { font-size: 0.9rem; font-weight: 500; color: var(--text-muted); cursor: pointer; transition: color 0.2s; }
+.nav-link-item:hover { color: var(--text-main); }
 .nav-right { display: flex; align-items: center; gap: 2rem; }
+.nav-cta { font-size: 0.85rem; font-weight: 500; border: 1px solid var(--border-line); padding: 0.5rem 1.4rem; border-radius: 50px; cursor: pointer; transition: all 0.3s; }
+.nav-cta:hover { background-color: var(--text-main); color: var(--bg-color); }
 
-.nav-cta {
-    color: var(--text-main);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    border: 1px solid var(--border-line);
-    padding: 0.5rem 1.4rem;
-    border-radius: 50px;
-    transition: background-color 0.3s;
-}
-.nav-cta:hover {
-    background-color: var(--text-main);
-    color: var(--bg-color);
-}
+/* --- 5. HANGING BULB SYSTEM --- */
+.theme-toggle { position: relative; width: 40px; height: 50px; display: flex; justify-content: center; }
+.hanging-bulb-fixture { position: absolute; top: -1.5rem; display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: transform 0.1s ease; }
+.hanging-bulb-fixture:active { transform: translateY(5px); }
+.bulb-cord { width: 2px; height: 30px; background-color: #475569; }
+.bulb-cap { width: 12px; height: 12px; background-color: #64748b; border-radius: 2px 2px 0 0; }
+.bulb-glass { width: 20px; height: 26px; background: radial-gradient(circle at center, #ffffff 20%, #fef08a 80%); border-radius: 50% 50% 40% 40%; position: relative; box-shadow: 0 0 25px 8px rgba(254, 240, 138, 0.4); transition: all 0.3s; }
+.bulb-glow-glow { position: absolute; width: 100%; height: 100%; border-radius: inherit; background: radial-gradient(circle at center, #ffffff 40%, transparent 80%); }
 
-.theme-toggle span { font-size: 1.3rem; cursor: pointer; }
+[data-theme="light"] .bulb-cord { background-color: #94a3b8; }
+[data-theme="light"] .bulb-cap { background-color: #cbd5e1; }
+[data-theme="light"] .bulb-glass { background: rgba(148, 163, 184, 0.15); border: 1.5px solid #94a3b8; box-shadow: none; }
+[data-theme="light"] .bulb-glow-glow { opacity: 0; }
 
-/* Premium Full-Screen Split Pane Hero Workspace Layout */
-.hero-workspace {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    padding: 10rem 4rem 4rem;
-    gap: 2rem;
-    border-bottom: 1px solid var(--border-line);
-}
-
+/* 6. Hero Splitting Viewport Styles */
+.hero-workspace { min-height: 100vh; display: grid; grid-template-columns: 1.15fr 0.85fr; padding: 10rem 4rem 4rem; gap: 2rem; }
 .hero-left { display: flex; flex-direction: column; justify-content: center; }
 .studio-tag { font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 1.5rem; }
-.hero-title { font-size: clamp(2.3rem, 4.8vw, 4.2rem); font-weight: 500; line-height: 1.1; letter-spacing: -2px; margin-bottom: 1.5rem; max-width: 720px; }
+.hero-title { font-size: clamp(2.3rem, 4.8vw, 4.2rem); font-weight: 500; line-height: 1.1; letter-spacing: -2px; }
 .highlight-text { font-style: italic; font-family: Georgia, serif; color: var(--accent); font-weight: 400; }
-.hero-subtitle { font-size: 1.1rem; color: var(--text-muted); line-height: 1.6; max-width: 520px; margin-bottom: 3rem; }
-
-/* Dual Action Button Group Style Rules */
+.hero-subtitle { font-size: 1.1rem; color: var(--text-muted); line-height: 1.6; max-width: 520px; margin: 2rem 0 3rem; }
 .hero-cta-group { display: flex; align-items: center; gap: 1rem; margin-bottom: 5rem; }
-.btn-primary { background-color: var(--text-main); color: var(--bg-color); text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 0.9rem 2rem; border-radius: 4px; }
-.btn-secondary { border: 1px solid var(--border-line); color: var(--text-main); text-decoration: none; font-weight: 500; font-size: 0.9rem; padding: 0.9rem 2rem; border-radius: 4px; display: flex; align-items: center; gap: 10px; transition: background-color 0.3s; }
-.btn-secondary:hover { background-color: rgba(255,255,255,0.05); }
+.btn-primary { background-color: var(--text-main); color: var(--bg-color); font-weight: 600; font-size: 0.9rem; padding: 0.9rem 2rem; border-radius: 4px; cursor: pointer; }
+.btn-secondary { border: 1px solid var(--border-line); color: var(--text-main); font-weight: 500; font-size: 0.9rem; padding: 0.9rem 2rem; border-radius: 4px; display: flex; align-items: center; gap: 10px; cursor: pointer; }
 .square-dot { width: 6px; height: 6px; background-color: var(--accent); display: inline-block; }
-
-/* Metrics Footer Layout */
 .live-metrics-bar { display: flex; flex-wrap: wrap; gap: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border-line); }
 .metric-item { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.5px; }
 .metric-item span { color: var(--text-main); }
 
-/* --- DYNAMIC PARALLAX ARTWORK CANVAS --- */
+/* 7. Parallax Background Assets Canvas Matrix */
 .hero-right-asset { display: flex; align-items: center; justify-content: center; }
-.glass-canvas-container { position: relative; width: 100%; height: 90%; max-height: 520px; display: flex; align-items: center; justify-content: center; }
+.glass-canvas-container { position: relative; width: 100%; height: 90%; max-height: 500px; display: flex; align-items: center; justify-content: center; }
+.abstract-cosmic-core { width: 250px; height: 250px; background: radial-gradient(circle at 30% 30%, #3a4454 0%, #05070a 100%); border-radius: 38% 62% 65% 35% / 45% 35% 65% 55%; box-shadow: 15px 25px 50px rgba(0,0,0,0.7); transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1); }
+.glass-panel-accent { position: absolute; width: 170px; height: 300px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.12); backdrop-filter: blur(15px); border-radius: 6px; transform: rotate(-12deg); z-index: 2; pointer-events: none; transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1); }
+.orbital-glowing-ring { position: absolute; width: 370px; height: 65px; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 50%; transform: rotateX(75deg) rotateY(-10deg); pointer-events: none; transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1); }
 
-.abstract-cosmic-core {
-    width: 270px; height: 270px;
-    background: radial-gradient(circle at 30% 30%, #3a4454 0%, #05070a 100%);
-    border-radius: 38% 62% 65% 35% / 45% 35% 65% 55%;
-    box-shadow: 15px 25px 50px rgba(0,0,0,0.7);
-    transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.glass-panel-accent {
-    position: absolute; width: 180px; height: 320px;
-    background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(15px); border-radius: 6px;
-    transform: rotate(-12deg); z-index: 2; pointer-events: none;
-    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.orbital-glowing-ring {
-    position: absolute; width: 390px; height: 70px;
-    border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 50%;
-    transform: rotateX(75deg) rotateY(-10deg); pointer-events: none;
-    transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* --- THE SIGNATURE ROW SEPARATION WORKSPACE GRID --- */
-.container { max-width: 1200px; margin: 0 auto; padding: 6rem 4rem; }
+/* --- 8. WIBIFY CARD GRID INTERACTION LISTS --- */
 .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-line); padding-bottom: 1.5rem; margin-bottom: 1rem; color: var(--text-muted); font-size: 0.85rem; }
 .section-header h2 { font-weight: 500; font-size: 0.85rem; }
-
-.grid { display: flex; flex-direction: column; }
-
-.card { 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: transparent; 
-    padding: 2.5rem 0; 
-    border-radius: 0;
-    border: none;
-    border-bottom: 1px solid var(--border-line); 
-    transition: border-color 0.3s ease; 
-}
-
+.grid-list { display: flex; flex-direction: column; }
+.row-card { display: flex; align-items: center; justify-content: space-between; padding: 2.5rem 0; border-bottom: 1px solid var(--border-line); cursor: pointer; }
 .card-left-meta { display: flex; align-items: flex-start; }
 .card-num { font-size: 0.85rem; color: var(--text-muted); margin-right: 5rem; padding-top: 0.5rem; }
-
-.card-text-wrapper h3 { 
-    font-size: 2.5rem; 
-    font-weight: 400; 
-    letter-spacing: -1.5px;
-    /* This makes the words move smoothly precisely like Wibify */
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s; 
-}
-.card-text-wrapper p { color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem; margin-bottom: 1rem; max-width: 600px; }
-
-.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+.card-text-wrapper h3 { font-size: 2.5rem; font-weight: 400; letter-spacing: -1.5px; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s; }
+.card-text-wrapper p { color: var(--text-muted); font-size: 0.95rem; margin: 0.5rem 0 1rem; max-width: 600px; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .tags span { font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 4px; background: rgba(255, 255, 255, 0.05); color: var(--text-main); font-weight: 500; }
 [data-theme="light"] .tags span { background: rgba(0, 0, 0, 0.05); }
+.btn-arrow { font-size: 1.8rem; color: var(--text-muted); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s; }
 
-.btn { font-size: 1.8rem; color: var(--text-muted); text-decoration: none; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s; }
-.btn i { display: inline-block; }
+/* Triggers text slide movement and theme tint mapping on hover precisely like Wibify */
+.row-card:hover .card-text-wrapper h3 { transform: translateX(20px); color: var(--accent); }
+.row-card:hover .btn-arrow { transform: translate(-10px, -5px) scale(1.1); color: var(--text-main); }
 
-/* INTERACTION TRIGGERS: Slings the content to the right on mouse hover interaction */
-.card:hover .card-text-wrapper h3 {
-    transform: translateX(20px);
-    color: var(--accent);
-}
-.card:hover .btn {
-    transform: translate(-10px, -5px) scale(1.1);
-    color: var(--text-main);
-}
+/* 9. Subpage Form & Matrix Elements Box Styles */
+.box-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+.block-box { background: var(--card-bg); border: 1px solid var(--border-line); padding: 2rem; border-radius: 4px; }
+.block-box h4 { font-size: 1.2rem; font-weight: 500; color: var(--accent); margin-bottom: 0.5rem; }
+.block-box p { font-size: 0.9rem; color: var(--text-muted); }
+
+.briefing-form { margin-top: 3rem; display: flex; flex-direction: column; gap: 2.5rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.form-group { display: flex; flex-direction: column; border-bottom: 1px solid var(--border-line); padding-bottom: 0.5rem; }
+.form-group label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.form-group input, .form-group textarea { background: transparent; border: none; color: var(--text-main); font-size: 1.2rem; padding-top: 0.5rem; outline: none; }
+.form-group input::placeholder { color: rgba(255,255,255,0.15); font-style: italic; }
+[data-theme="light"] .form-group input::placeholder { color: rgba(0,0,0,0.2); }
+.submit-pill { background: var(--text-main); color: var(--bg-color); border: none; padding: 1rem 2.5rem; border-radius: 4px; font-weight: 600; cursor: pointer; align-self: flex-start; margin-top: 1rem; }
 
 @media (max-width: 968px) {
     .hero-workspace { grid-template-columns: 1fr; padding: 8rem 2rem 2rem; text-align: center; }
     .hero-left { align-items: center; }
-    .hero-cta-group { justify-content: center; }
-    .live-metrics-bar { justify-content: center; }
-    .hero-right-asset { display: none; }
+    .hero-cta-group, .live-metrics-bar, .nav-links { justify-content: center; }
+    .hero-right-asset, .nav-links { display: none; }
     .studio-nav { padding: 1rem 2rem; }
     .card-text-wrapper h3 { font-size: 1.8rem; }
     .card-num { margin-right: 2rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .container { padding: 0 1.5rem; }
 }
-
-footer { text-align: center; margin-top: 6rem; padding: 2rem 0; color: var(--text-muted); border-top: 1px solid var(--border-line); }
+.global-footer { text-align: center; padding: 5rem 0 3rem; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border-line); margin-top: 5rem; }

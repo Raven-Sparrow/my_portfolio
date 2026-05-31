@@ -3,114 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | Portfolio</title>
+    <title>Your Name | Digital Design Studio</title>
     <!-- Boxicons for modern tech icons -->
     <link href="https://unpkg.com" rel="stylesheet">
-    <!-- Link to external CSS file -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Wibify Floating Header Navigation Bar -->
+    <!-- Wibify Header Navigation Bar Framework -->
     <nav class="studio-nav">
-        <div class="logo">
+        <div class="logo" onclick="switchPage('home')">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
                 <path d="M4 4L9 14L14 4L19 14L24 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </div>
+        <div class="nav-links">
+            <span class="nav-link-item" onclick="switchPage('portfolio')">Work</span>
+            <span class="nav-link-item" onclick="switchPage('studio')">Studio</span>
+            <span class="nav-link-item" onclick="switchPage('contact')">Contact</span>
+        </div>
         <div class="nav-right">
-            <a href="mailto:your.email@example.com" class="nav-cta">Start a project →</a>
+            <span class="nav-cta" onclick="switchPage('contact')">Start a project →</span>
+            <!-- Premium Interactive Hanging Bulb Fixture Toggle Container -->
             <div class="theme-toggle">
-                <span id="theme-icon">💡</span>
+                <div class="hanging-bulb-fixture" id="bulb-trigger">
+                    <div class="bulb-cord"></div>
+                    <div class="bulb-cap"></div>
+                    <div class="bulb-glass"><div class="bulb-glow-glow"></div></div>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Full-Screen Split Viewport Layout -->
-    <main class="hero-workspace" id="interactive-hero">
-        <div class="hero-left">
-            <div class="studio-tag">[01] DIGITAL DESIGN STUDIO</div>
-            <h1 class="hero-title">
-                We build <span class="highlight-text">digital products</span> for ambitious brands.
-            </h1>
-            <p class="hero-subtitle">
-                Websites, branding, software and mobile apps — digital products for brands with ambition.
-            </p>
-            
-            <div class="hero-cta-group">
-                <a href="mailto:your.email@example.com" class="btn-primary">Start a project →</a>
-                <a href="#projects" class="btn-secondary"><span class="square-dot"></span> Selected work</a>
+    <!-- PAGE VIEWPORT 1: HOME WORKSPACE SCREEN -->
+    <main id="view-home" class="page-view active-view">
+        <div class="hero-workspace" id="interactive-hero">
+            <div class="hero-left">
+                <div class="studio-tag"> DIGITAL DESIGN STUDIO</div>
+                <h1 class="hero-title">
+                    We build <span class="highlight-text">digital products</span> for ambitious brands.
+                </h1>
+                <p class="hero-subtitle">
+                    Websites, branding, software and mobile apps — digital products for brands with ambition.
+                </p>
+                <div class="hero-cta-group">
+                    <span class="btn-primary" onclick="switchPage('contact')">Start a project →</span>
+                    <span class="btn-secondary" onclick="switchPage('portfolio')"><span class="square-dot"></span> Selected work</span>
+                </div>
+                <div class="live-metrics-bar">
+                    <div class="metric-item"><span>★ 5,0</span> GOOGLE · 21 REVIEWS</div>
+                    <div class="metric-item"><span>▪ 7,5M+</span> USERS REACHED</div>
+                    <div class="metric-item"><span>⚡ 100</span> PAGESPEED SCORE</div>
+                </div>
             </div>
-
-            <!-- Performance Tracking Metrics Bar -->
-            <div class="live-metrics-bar">
-                <div class="metric-item"><span>★ 5,0</span> GOOGLE · 21 REVIEWS</div>
-                <div class="metric-item"><span>▪ 7,5M+</span> USERS REACHED</div>
-                <div class="metric-item"><span>⚡ 100</span> PAGESPEED SCORE</div>
-            </div>
-        </div>
-
-        <!-- Floating Abstract Space Artwork Asset Panel -->
-        <div class="hero-right-asset">
-            <div class="glass-canvas-container">
-                <div class="glass-panel-accent parallax-layer" data-speed="-0.03"></div>
-                <div class="abstract-cosmic-core parallax-layer" data-speed="0.05"></div>
-                <div class="orbital-glowing-ring parallax-layer" data-speed="0.02"></div>
+            <!-- Wibify Floating Abstract Canvas Element -->
+            <div class="hero-right-asset">
+                <div class="glass-canvas-container">
+                    <div class="glass-panel-accent parallax-layer" data-speed="-0.03"></div>
+                    <div class="abstract-cosmic-core parallax-layer" data-speed="0.05"></div>
+                    <div class="orbital-glowing-ring parallax-layer" data-speed="0.02"></div>
+                </div>
             </div>
         </div>
     </main>
 
-    <div class="container">
-        <!-- Projects Showcase Section -->
-        <section id="projects">
+    <!-- PAGE VIEWPORT 2: SELECTED WORK ENGINE -->
+    <main id="view-portfolio" class="page-view">
+        <div class="container view-padding">
             <div class="section-header">
                 <h2> SELECTED WORK / 2024 — 2026</h2>
-                <p>What we've built.</p>
+                <p>Six outcomes optimized for conversion and layout speed.</p>
             </div>
-            
-            <div class="grid">
-                <!-- Project 1 -->
-                <div class="card">
+            <div class="grid-list">
+                <div class="row-card">
                     <div class="card-left-meta">
                         <span class="card-num">01</span>
                         <div class="card-text-wrapper">
-                            <h3>E-Commerce Platform</h3>
-                            <p>A fully responsive digital storefront featuring secure user authentication, shopping cart functionality, and integrated Stripe payments.</p>
-                            <div class="tags">
-                                <span>React</span>
-                                <span>Node.js</span>
-                                <span>MongoDB</span>
-                            </div>
+                            <h3>Die Lackier-Werkstatt</h3>
+                            <p>High-performance digital storefront engineered with custom workspace layers.</p>
+                            <div class="tags"><span>WEBSEITE</span><span>BRANDING</span><span>2025</span></div>
                         </div>
                     </div>
-                    <a href="#" class="btn" target="_blank">View Code <i class='bx bx-right-arrow-alt'></i></a>
+                    <span class="btn-arrow">↗</span>
                 </div>
-
-                <!-- Project 2 -->
-                <div class="card">
+                <div class="row-card">
                     <div class="card-left-meta">
                         <span class="card-num">02</span>
                         <div class="card-text-wrapper">
-                            <h3>Task Analytics Dashboard</h3>
-                            <p>An automated backend script that collects daily productivity metrics and visualizes user data trends via interactive graphs.</p>
-                            <div class="tags">
-                                <span>Python</span>
-                                <span>Django</span>
-                                <span>Chart.js</span>
-                            </div>
+                            <h3>UnfallFix24</h3>
+                            <p>Custom data reporting analytics suite deployed across remote system networks.</p>
+                            <div class="tags"><span>WEBSEITE</span><span>SOFTWARE</span><span>2025</span></div>
                         </div>
                     </div>
-                    <a href="#" class="btn" target="_blank">View Code <i class='bx bx-right-arrow-alt'></i></a>
+                    <span class="btn-arrow">↗</span>
                 </div>
             </div>
-        </section>
+        </div>
+    </main>
 
-        <footer>
-            <p>© 2026 Your Name. Powered by GitHub Pages.</p>
-        </footer>
-    </div>
+    <!-- PAGE VIEWPORT 3: STUDIO HEADQUARTERS BLUEPRINT -->
+    <main id="view-studio" class="page-view">
+        <div class="container view-padding">
+            <div class="section-header">
+                <h2> STUDIO · HEADQUARTERS</h2>
+                <p>Bocholt, NRW — 51.8336° N · 6.6131° E</p>
+            </div>
+            <h1 class="hero-title" style="margin: 3rem 0;">Our studio in Bocholt is our <span class="highlight-text">Place-To-Be.</span></h1>
+            <div class="section-header" style="margin-top: 5rem;">
+                <h2>CORE PRODUCTION INFRASTRUCTURE MATRIX</h2>
+            </div>
+            <div class="box-grid">
+                <div class="block-box"><h4>Next.js 16</h4><p>Production Core Framework Environment</p></div>
+                <div class="block-box"><h4>TypeScript 5</h4><p>Type-Safe Application Management Engine</p></div>
+                <div class="block-box"><h4>Tailwind CSS 4</h4><p>Sleek High-Performance Utility Presentation</p></div>
+            </div>
+            <div class="live-metrics-bar" style="justify-content: space-between; margin-top: 5rem; padding-top: 2rem;">
+                <div class="metric-item">🟢 PERFORMANCE <span>100</span></div>
+                <div class="metric-item">🟢 ACCESSIBILITY <span>100</span></div>
+                <div class="metric-item">🟢 BEST PRACTICES <span>100</span></div>
+                <div class="metric-item">🟢 SEO INDEXING <span>100</span></div>
+            </div>
+        </div>
+    </main>
 
-    <!-- Link to external JavaScript file -->
+    <!-- PAGE VIEWPORT 4: DIRECT BRIEFING INTAKE PANEL -->
+    <main id="view-contact" class="page-view">
+        <div class="container view-padding" style="max-width: 850px;">
+            <div class="section-header">
+                <h2> BRIEFING / INTAKE CORE ENGINE</h2>
+                <p>Available for Q3/Q4 contracts • Response inside 24h</p>
+            </div>
+            <h1 class="hero-title" style="margin: 2rem 0;">Let's <span class="highlight-text">talk.</span></h1>
+            <form class="briefing-form" onsubmit="event.preventDefault(); alert('Briefing data compiled safely.');">
+                <div class="form-row">
+                    <div class="form-group"><label>First Name *</label><input type="text" placeholder="Anna" required></div>
+                    <div class="form-group"><label>Last Name *</label><input type="text" placeholder="Smith" required></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Email Address *</label><input type="email" placeholder="anna@company.com" required></div>
+                    <div class="form-group"><label>Phone Matrix *</label><input type="tel" placeholder="+1 555 1234567" required></div>
+                </div>
+                <div class="form-group"><label>Project Outline Data Details</label><textarea rows="3" placeholder="Idea, scope, timeline — what we should know."></textarea></div>
+                <button type="submit" class="submit-pill">Send request →</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Core Global Footer -->
+    <footer class="global-footer">
+        <p>© 2026 Your Name. Optimized with clean modular engine elements.</p>
+    </footer>
+
+    <!-- Link to external JavaScript logic file -->
     <script src="script.js"></script>
 </body>
 </html>
