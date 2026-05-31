@@ -5,7 +5,10 @@
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
     --accent: #38bdf8;
-    --bulb-color: #fbbf24; /* Glowing yellow when dark mode is ON */
+    --bulb-color: #fbbf24;
+    --cursor-color: rgba(56, 189, 248, 0.3);
+    --cursor-dot-color: #38bdf8;
+    --cursor-text-color: #0f172a;
 }
 
 /* 2. Light Theme Variables (Activated via JavaScript) */
@@ -15,7 +18,10 @@
     --text-main: #0f172a;
     --text-muted: #64748b;
     --accent: #0284c7;
-    --bulb-color: #94a3b8; /* Dim grey when turned off in light mode */
+    --bulb-color: #94a3b8;
+    --cursor-color: rgba(2, 132, 199, 0.2);
+    --cursor-dot-color: #0284c7;
+    --cursor-text-color: #ffffff;
 }
 
 /* 3. Global Styles */
@@ -30,7 +36,13 @@ body {
     background-color: var(--bg-color); 
     color: var(--text-main); 
     line-height: 1.6; 
-    transition: background-color 0.3s ease, color 0.3s ease; /* Added for smooth transition */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: none; /* Hides system standard cursor arrow */
+}
+
+/* Force links and hoverable items to hide default cursor pointers */
+a, button, .theme-toggle span {
+    cursor: none !important;
 }
 
 .container { 
@@ -39,20 +51,71 @@ body {
     padding: 2rem; 
 }
 
+/* --- PREMIUM WIBIFY INTERACTIVE MOUSE CURSOR STYLING --- */
+.custom-cursor {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--cursor-dot-color);
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /* Crucial: stops cursor from blocking mouse clicks */
+    z-index: 9999;
+    transition: width 0.3s cubic-bezier(0.1, 1, 0.1, 1), 
+                height 0.3s cubic-bezier(0.1, 1, 0.1, 1), 
+                background-color 0.3s ease, 
+                border-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.custom-cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--cursor-dot-color);
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10000;
+}
+
+/* Added through JavaScript hover class injections */
+.custom-cursor.hovered {
+    width: 100px;
+    height: 100px;
+    background-color: var(--cursor-dot-color);
+    border-color: var(--cursor-dot-color);
+}
+
+.custom-cursor::after {
+    content: "VIEW CODE";
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--cursor-text-color);
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.custom-cursor.hovered::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Hide custom cursors on standard mobile touchscreen breakpoints */
+@media (max-width: 768px) {
+    body { cursor: default; }
+    .custom-cursor, .custom-cursor-dot { display: none; }
+}
+
 /* 4. Style for the Bulb Button */
 .theme-toggle { 
     margin-bottom: 1rem; 
-}
-
-.theme-toggle i { 
-    font-size: 2.5rem; 
-    cursor: pointer; 
-    color: var(--bulb-color); 
-    transition: transform 0.2s, color 0.3s; 
-}
-
-.theme-toggle i:hover { 
-    transform: scale(1.1); 
 }
 
 /* 5. Hero Section */
@@ -98,7 +161,7 @@ section h2 {
     border-bottom: 2px solid var(--card-bg); 
     padding-bottom: 0.5rem; 
     margin-bottom: 1.5rem; 
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease; 
 }
 
 /* 7. Projects Grid & Cards */
@@ -112,7 +175,7 @@ section h2 {
     background-color: var(--card-bg); 
     padding: 1.5rem; 
     border-radius: 12px; 
-    border: 1px solid var(--text-muted); /* Linked to variables so border color updates too */
+    border: 1px solid var(--text-muted); 
     transition: transform 0.3s, background-color 0.3s ease, border-color 0.3s ease; 
 }
 
@@ -139,18 +202,12 @@ section h2 {
 }
 
 .tags span { 
-    background: var(--text-muted); 
-    opacity: 0.2; /* Creates a clean adaptive background bubble */
     font-size: 0.75rem; 
     padding: 0.2rem 0.6rem; 
     border-radius: 20px; 
-}
-
-/* Fallback color matching for text over tags */
-.tags span {
-    background: rgba(148, 163, 184, 0.15);
-    color: var(--accent);
-    font-weight: 600;
+    background: rgba(148, 163, 184, 0.15); 
+    color: var(--accent); 
+    font-weight: 600; 
 }
 
 .btn { 
@@ -174,5 +231,5 @@ footer {
     padding: 2rem 0; 
     color: var(--text-muted); 
     border-top: 1px solid var(--card-bg); 
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease; 
 }
