@@ -5,6 +5,42 @@
     --text-muted: #94a3b8;
     --accent: #38bdf8;
 }
+/* 1. Base Dark Theme Variables (Default) */
+:root {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent: #38bdf8;
+    --bulb-color: #fbbf24; /* Glowing yellow when dark mode is ON */
+}
+
+/* 2. Light Theme Variables (Activated via JavaScript) */
+[data-theme="light"] {
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --accent: #0284c7;
+    --bulb-color: #94a3b8; /* Dim grey when turned off in light mode */
+}
+
+/* 3. Style for the Bulb Button */
+.theme-toggle {
+    margin-bottom: 1rem;
+}
+
+.theme-toggle i {
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: var(--bulb-color);
+    transition: transform 0.2s, color 0.3s;
+}
+
+.theme-toggle i:hover {
+    transform: scale(1.1);
+}
+
 
 * { 
     margin: 0; 
